@@ -142,7 +142,7 @@ btnVoltarSuccess.addEventListener('click', voltarParaCadastroCompleto);
 
 const btnIrPix = document.getElementById('btnIrPix');
 btnIrPix.addEventListener('click', function() {
-    window.location.href = 'pg-pix.html';
+    window.location.href = 'p1.html';
 });
 
 const btnSairPix = document.getElementById('btnSairPix');
