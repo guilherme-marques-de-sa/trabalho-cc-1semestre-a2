@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bradesco - Abra sua conta</title>
+    <!-- ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="p1-assets/style.css">
+</head>
+<body>
+
+<div id="screen-cadastro" class="screen">
+    <div class="card">
+        <div class="bradesco-header">
+            <div class="logo-circle">
+                <span>B</span>
+            </div>
+            <h1>bradesco</h1>
+            <p>Abra sua conta digital em minutos</p>
+        </div>
+        <div class="form-content">
+            <h2 style="font-size: 1.6rem; margin-bottom: 1.2rem; font-weight: 600;">Vamos começar</h2>
+            <form id="form-cadastro">
+                <div class="form-group">
+                    <label>Nome completo</label>
+                    <input type="text" id="nomeCompleto" placeholder="Como no documento" autocomplete="off">
+                    <div class="error-msg" id="error-nome">Informe seu nome completo</div>
+                </div>
+
+                <div class="form-group">
+                    <label>CPF</label>
+                    <input type="text" id="cpfInput" maxlength="14" placeholder="000.000.000-00" autocomplete="off">
+                    <div class="error-msg" id="error-cpf">CPF inválido (11 dígitos)</div>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <div class="form-group" style="flex:1">
+                        <label>Nascimento</label>
+                        <input type="date" id="dataNasc">
+                        <div class="error-msg" id="error-data">Data inválida</div>
+                    </div>
+                    <div class="form-group" style="flex:1">
+                        <label>Celular</label>
+                        <input type="tel" id="celularInput" maxlength="16" placeholder="(11) 98765-4321">
+                        <div class="error-msg" id="error-celular">Número incompleto</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="emailInput" placeholder="seu@email.com">
+                    <div class="error-msg" id="error-email">E-mail inválido</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Crie uma senha</label>
+                    <input type="password" id="senhaInput" placeholder="mínimo 6 caracteres">
+                    <div class="error-msg" id="error-senha">A senha deve ter pelo menos 6 caracteres</div>
+                </div>
+
+                <button type="submit" class="btn-primary"><i class="fas fa-arrow-right" style="margin-right: 8px;"></i> Criar minha conta</button>
+            </form>
+            <div class="text-small">
+                Ao continuar, você concorda com os <span style="color:#cc092f; text-decoration:underline;">Termos de Uso</span> e 
+                <span style="color:#cc092f; text-decoration:underline;">Política de Privacidade</span>.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="screen-success" class="screen" style="display: none;">
+    <div class="card" style="text-align: center; padding: 2rem 1.5rem;">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Cadastro realizado!</h2>
+        <p style="color: #4a5568; margin-bottom: 1rem;" id="mensagemBoasVindas">Bem-vindo(a) ao Bradesco!</p>
+        <p style="font-size: 0.9rem; color: #718096; margin-bottom: 2rem;">Sua conta digital está pronta para usar.</p>
+        
+        <button id="btnIrPix" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <i class="fas fa-qrcode"></i> Fazer Pix agora
+        </button>
+        
+        <button id="btnVoltarCadastroSuccess" class="btn-outline" style="margin-top: 12px;">
+            <i class="fas fa-undo-alt"></i> Voltar ao início
+        </button>
+    </div>
+</div>
+
+<div id="screen-pix" class="screen" style="display: none;">
+    <div class="card">
+        <div class="pix-header">
+            <div class="logo-mini">
+                <div class="mini-b">B</div>
+                <span style="font-weight: 700; color: #cc092f;">bradesco</span>
+            </div>
+            <div class="user-greeting" id="pixUserName">Olá,</div>
+        </div>
+        <div class="form-content" style="padding-top: 1rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Enviar Pix</h3>
+            <p style="color: #4b5563; margin-bottom: 1.5rem; font-size: 0.85rem;">Transferência instantânea e gratuita</p>
+            
+            <div style="background: #f8fafc; border-radius: 1.8rem; padding: 1.2rem; text-align: center;">
+                <label style="font-size: 0.9rem; color: #4b5563;">Valor (R$)</label>
+                <input type="text" id="valorPix" placeholder="0,00" class="valor-pix-input" autocomplete="off">
+                <div id="pix-error" class="error-msg" style="display: none; margin-top: 8px;">Digite um valor válido (ex: 15,90)</div>
+            </div>
+
+            <button id="btnEnviarPix" class="btn-primary" style="margin: 1.8rem 0 0.8rem 0;">
+                <i class="fas fa-paper-plane"></i> Continuar e enviar
+            </button>
+            
+            <button id="btnSairPix" class="btn-outline" style="background: white;">
+                <i class="fas fa-sign-out-alt"></i> Sair / trocar conta
+            </button>
+        </div>
+    </div>
+</div>
+
+    <script src="p1-assets/script.js"></script>
+
+</body>
+</html>

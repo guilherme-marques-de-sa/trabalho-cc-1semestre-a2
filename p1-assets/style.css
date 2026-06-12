@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f2f4f8;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.screen {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    transition: all 0.2s ease;
+}
+
+.card {
+    background: white;
+    border-radius: 2rem;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.bradesco-header {
+    background: linear-gradient(135deg, #cc092f 0%, #a00725 100%);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: white;
+}
+
+.logo-circle {
+    background: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 14px rgba(0,0,0,0.1);
+}
+
+.logo-circle span {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #cc092f;
+}
+
+.bradesco-header h1 {
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+    font-weight: 700;
+}
+
+.bradesco-header p {
+    opacity: 0.9;
+    margin-top: 6px;
+    font-size: 0.95rem;
+}
+
+.form-content {
+    padding: 2rem 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.4rem;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: #fff;
+}
+
+input:focus {
+    outline: none;
+    border-color: #cc092f;
+    box-shadow: 0 0 0 3px rgba(204,9,47,0.2);
+}
+
+.btn-primary {
+    background: #cc092f;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+}
+
+.btn-primary:hover {
+    background: #a80727;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #cc092f;
+    color: #cc092f;
+    padding: 0.9rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    background: #fff0f2;
+}
+
+.success-icon {
+    background: #dcfce7;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+}
+
+.success-icon i {
+    font-size: 3.5rem;
+    color: #10b981;
+}
+
+.text-small {
+    font-size: 0.7rem;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 1.8rem;
+}
+
+.flex-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.flex-btns button {
+    flex: 1;
+}
+
+.pix-header {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #edf2f7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-mini .mini-b {
+    background: #cc092f;
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.user-greeting {
+    font-weight: 500;
+    background: #f1f5f9;
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+}
+
+.valor-pix-input {
+    border: none;
+    width: 100%;
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: 1.5rem;
+    margin: 20px 0;
+}
+
+.valor-pix-input:focus {
+    outline: none;
+    border: 1px solid #cc092f;
+}
+
+.error-msg {
+    color: #dc2626;
+    font-size: 0.75rem;
+    margin-top: 5px;
+    display: none;
+}
+
+hr {
+    margin: 1rem 0;
+}
+
+@media (max-width: 480px) {
+    .form-content {
+        padding: 1.5rem;
+    }
+    .valor-pix-input {
+        font-size: 2.2rem;
+    }
+}

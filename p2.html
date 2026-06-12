@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bradesco - Área Pix</title>
+    <!-- ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="p2-assets/style.css">
+</head>
+<body>
+
+    <div class="header-top">
+        <div style="max-width:500px; margin:0 auto; padding:12px 20px;">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="logo-bradesco">B</div>
+                    <span style="font-weight:800; font-size:1.6rem; color:#cc092f; letter-spacing:-0.5px;">bradesco</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right">
+                        <div class="text-xs text-gray-500">Ag 1234-5</div>
+                        <div class="text-sm font-medium">Conta 67890-1</div>
+                    </div>
+                    <div style="background:#eef2ff; width:40px; height:40px; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:1.5rem;">👤</div>
+                </div>
+            </div>
+        </div>
+        <div class="saldo-box" style="max-width:500px; margin:0 auto;">
+            <div class="flex justify-between items-end">
+                <div>
+                    <div style="font-size:0.75rem; opacity:0.8;">Saldo disponível</div>
+                    <div style="font-size:2rem; font-weight:700; letter-spacing:-0.5px;" id="saldoValor">R$ 12.847,35</div>
+                </div>
+                <button onclick="alternarVisibilidadeSaldo()" style="background:rgba(255,255,255,0.2); border:none; border-radius:30px; padding:6px 12px; color:white; font-size:0.7rem; cursor:pointer;"><i class="fa-regular fa-eye"></i> Ocultar</button>
+            </div>
+        </div>
+    </div>
+
+    <div style="max-width:500px; margin:0 auto; background:#f1f5f9;">
+        <!-- TABS -->
+        <div class="flex" style="background:white; border-bottom:1px solid #e2e8f0; position:sticky; top:108px; z-index:30;">
+            <button class="tab-btn flex-1" id="tabEnviar" onclick="mudarTab(0)">Enviar Pix</button>
+            <button class="tab-btn flex-1" id="tabChaves" onclick="mudarTab(1)">Cadastrar Chave</button>
+            <button class="tab-btn flex-1" id="tabHistorico" onclick="mudarTab(2)">Meus Pix</button>
+        </div>
+
+        <div id="conteudoEnviar" style="padding: 16px;">
+            <div class="card-branco mb-4">
+                <label style="font-size:0.75rem; color:#4a5b7a;">Quanto você quer enviar?</label>
+                <div class="flex items-center gap-1 mt-1">
+                    <span style="font-size:1.8rem; color:#5a6e8a;">R$</span>
+                    <input type="text" id="campoValor" class="input-grande" placeholder="0,00" oninput="formatarDinheiro(this)">
+                </div>
+            </div>
+
+            <div class="card-branco mb-4">
+                <label style="font-weight:500; display:block; margin-bottom:8px;">Chave Pix do destinatário</label>
+                <input type="text" id="campoChavePix" placeholder="CPF, E-mail, Telefone ou Chave aleatória" 
+                       style="width:100%; padding:12px; border:1px solid #e2e8f0; border-radius:20px; font-size:0.9rem; margin-bottom:8px;"
+                       oninput="validarChavePix(this)">
+                <div id="erroChave" style="color:#dc2626; font-size:0.75rem; display:none; margin-top:4px;">
+                    <i class="fa-solid fa-exclamation-circle"></i> <span id="textoErro"></span>
+                </div>
+
+                <div id="areaDestinatario" style="display:none; background:#f8fafc; border-radius:24px; padding:12px; margin-top:12px;">
+                    <div class="flex items-center gap-3">
+                        <div style="background:#d9f0e1; width:48px; height:48px; border-radius:28px; display:flex; align-items:center; justify-content:center; font-size:1.6rem;">
+                            <i class="fa-solid fa-check" style="color:#10b981;"></i>
+                        </div>
+                        <div style="flex:1">
+                            <div id="destNome" style="font-weight:600;">Chave confirmada</div>
+                            <div id="destChave" style="font-size:0.7rem; color:#5b6e8c;"></div>
+                        </div>
+                        <button onclick="limparDestinatario()" style="background:none; border:none; color:#9aa9bf; font-size:1.2rem;"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-branco mb-4">
+                <label style="font-weight:500;">Descrição (opcional)</label>
+                <input type="text" id="descricaoPix" placeholder="Ex: almoço, presente, etc" style="width:100%; margin-top:8px; padding:12px; border:1px solid #e2e8f0; border-radius:20px; font-size:0.9rem;">
+            </div>
+
+            <button class="btn-pix" onclick="abrirModalConfirmacao()"><i class="fa-regular fa-paper-plane"></i> Continuar</button>
+        </div>
+
+        <div id="conteudoChaves" style="display:none; padding:16px;">
+            <div class="card-branco mb-4">
+                <h3 style="font-weight:600; margin-bottom:16px;"><i class="fa-solid fa-key"></i> Minhas chaves Pix</h3>
+                <div style="border-bottom:1px solid #edf2f7; padding-bottom:12px; margin-bottom:12px;" class="flex justify-between items-center">
+                    <div class="flex gap-3"><i class="fa-solid fa-mobile-screen" style="font-size:1.3rem;"></i> <div><div>Celular</div><div style="font-size:0.7rem;">(11) 99999-8888</div></div></div>
+                    <span style="background:#dcfce7; padding:4px 8px; border-radius:30px; font-size:0.6rem;">Ativa</span>
+                </div>
+                <div style="border-bottom:1px solid #edf2f7; padding-bottom:12px; margin-bottom:12px;" class="flex justify-between items-center">
+                    <div class="flex gap-3"><i class="fa-regular fa-envelope"></i> <div><div>E-mail</div><div style="font-size:0.7rem;">meuemail@bradesco.com</div></div></div>
+                    <span style="background:#dcfce7; padding:4px 8px; border-radius:30px; font-size:0.6rem;">Ativa</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex gap-3"><i class="fa-regular fa-id-card"></i> <div><div>CPF</div><div style="font-size:0.7rem;">***.456.789-**</div></div></div>
+                    <span style="background:#dcfce7; padding:4px 8px; border-radius:30px; font-size:0.6rem;">Ativa</span>
+                </div>
+            </div>
+            <button onclick="cadastrarChaveNova()" class="border-dashed-custom w-full" style="background:white; padding:20px; color:#5f6e8a; font-weight:500; border:2px dashed #cbd5e1; border-radius:32px; width:100%;">
+                <i class="fa-solid fa-plus"></i> Cadastrar nova chave Pix
+            </button>
+        </div>
+
+        <div id="conteudoHistorico" style="display:none; padding:16px;">
+            <div class="card-branco">
+                <div class="flex justify-between"><span style="font-weight:500;">Últimas movimentações</span><span style="color:#cc092f; font-size:0.8rem;">Ver todas</span></div>
+                <div style="margin-top:18px;">
+                    <div class="flex justify-between items-center mb-4">
+                        <div><div style="font-weight:500;">Maria Oliveira</div><div style="font-size:0.65rem; color:#6c7a91;">Chave aleatória • Hoje 14:22</div></div>
+                        <div style="color:#dc2626; font-weight:500;">- R$ 85,00</div>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <div><div style="font-weight:500;">Mercado Extra</div><div style="font-size:0.65rem;">CPF • Ontem 09:15</div></div>
+                        <div style="color:#16a34a; font-weight:500;">+ R$ 320,00</div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div><div style="font-weight:500;">Carlos Andrade</div><div style="font-size:0.65rem;">E-mail • 12/02/2025</div></div>
+                        <div style="color:#dc2626; font-weight:500;">- R$ 49,90</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalConfirm" class="modal-overlay">
+        <div class="modal-conteudo">
+            <h3 class="text-center" style="font-size:1.3rem; font-weight:600; margin-bottom:20px;">Confirmar Pix</h3>
+            <div style="background:#f7f9fc; border-radius:24px; padding:20px;">
+                <div class="flex justify-between mb-3"><span style="color:#52607a;">Valor</span><span id="modalValor" style="font-weight:700; font-size:1.2rem;">R$ 0,00</span></div>
+                <div class="flex justify-between mb-3"><span style="color:#52607a;">Para</span><span id="modalDestinatario" style="font-weight:500;">--</span></div>
+                <div class="flex justify-between"><span style="color:#52607a;">Descrição</span><span id="modalDescricao" style="font-style:italic;">--</span></div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="fecharModal()" style="flex:1; padding:14px; border:1px solid #cbd5e1; border-radius:32px; background:white;">Cancelar</button>
+                <button onclick="executarPix()" style="flex:1; background:#cc092f; border:none; border-radius:32px; color:white; font-weight:600;">Confirmar e enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="telaSucesso" class="tela-sucesso">
+        <div style="text-align:center; padding:24px;">
+            <div style="background:#dcfce7; width:100px; height:100px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;"><i class="fa-solid fa-check" style="font-size:3rem; color:#10b981;"></i></div>
+            <h2 style="font-size:1.6rem;">Pix enviado!</h2>
+            <p style="color:#4b5563; margin:12px 0 28px;">O valor foi transferido com sucesso.</p>
+            <button onclick="fecharTelaSucesso()" style="background:#cc092f; border:none; padding:14px 28px; border-radius:40px; color:white; font-weight:600;">Voltar ao início</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="nav-item"><i class="fa-solid fa-paper-plane"></i><span>Pix</span></div>
+        <div class="nav-item"><i class="fa-regular fa-credit-card"></i><span>Cartões</span></div>
+        <div class="nav-item"><i class="fa-solid fa-chart-line"></i><span>Investir</span></div>
+    </div>
+
+    <script src="p2-assets/script.js"></script>
+</body>
+</html>

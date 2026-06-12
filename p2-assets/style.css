@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f1f5f9;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    padding-bottom: 80px;
+}
+
+.header-top {
+    background: white;
+    border-bottom: 1px solid #e9eef3;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.logo-bradesco {
+    background: #cc092f;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 22px;
+    color: white;
+}
+
+.saldo-box {
+    background: linear-gradient(98deg, #cc092f 0%, #a10a2b 100%);
+    padding: 18px 20px;
+    color: white;
+}
+
+.tab-btn {
+    background: white;
+    border: none;
+    padding: 14px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #5b6e8c;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.1s ease;
+}
+
+.tab-active {
+    color: #cc092f;
+    border-bottom: 2px solid #cc092f;
+    font-weight: 600;
+}
+
+.card-branco {
+    background: white;
+    border-radius: 28px;
+    padding: 20px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.05);
+}
+
+input, button {
+    font-family: inherit;
+}
+
+.input-grande {
+    font-size: 2.8rem;
+    font-weight: 600;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 8px 0;
+}
+
+.input-grande::placeholder {
+    color: #cbd5e1;
+    font-size: 2rem;
+}
+
+.chave-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 14px;
+    transition: 0.15s;
+    background: white;
+}
+
+.chave-selecionada {
+    border-color: #cc092f;
+    background: #fff3f5;
+}
+
+.btn-pix {
+    background: #cc092f;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-pix:hover {
+    background: #a80727;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 200;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.modal-overlay.show {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.modal-conteudo {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 32px 32px 0 0;
+    padding: 28px 24px 32px;
+    transform: translateY(20px);
+    transition: transform 0.2s ease;
+}
+
+.modal-overlay.show .modal-conteudo {
+    transform: translateY(0);
+}
+
+.tela-sucesso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.tela-sucesso.abrir {
+    visibility: visible;
+    opacity: 1;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #eef2f6;
+    padding: 8px 20px 12px;
+    display: flex;
+    justify-content: space-around;
+    max-width: 500px;
+    margin: 0 auto;
+    z-index: 40;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #7c8ba0;
+    gap: 4px;
+}
+
+.nav-item.active {
+    color: #cc092f;
+}
+
+.border-dashed-custom {
+    border: 2px dashed #cbd5e1;
+    background: transparent;
+    border-radius: 28px;
+}
+
+.mt-1 { margin-top: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.text-center { text-align: center; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.w-full { width: 100%; }
+.rounded-full { border-radius: 999px; }
+.text-sm { font-size: 0.85rem; }
+.text-xs { font-size: 0.7rem; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
